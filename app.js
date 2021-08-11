@@ -21,7 +21,7 @@ mongoose.connect(
 );
 
 //listen to port
-app.listen(3000,'192.168.11.118')
+app.listen(3000,'192.168.11.124')
 
 //set midllwares
 app.use(bodyParser.json());

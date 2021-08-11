@@ -15,6 +15,20 @@ const deleteUser = require("../controllers/users/deleteUser");
 //------------------------------------------------------------------------------//
 //---------Categorie Controller
 const postCategorie = require("../controllers/categories/postCategorie");
+//------------------------------------------------------------------------------//
+//---------orderDetails Controller
+const postDetails = require("../controllers/ordersDetails/postDetails");
+const getDetails = require("../controllers/ordersDetails/getDetails");
+const putDetails = require("../controllers/ordersDetails/putDetails");
+//------------------------------------------------------------------------------//
+//---------Orders Controller
+const postOrders = require("../controllers/orders/postOrder");
+const getOrders = require("../controllers/orders/getOrders");
+const putOrders = require("../controllers/orders/putOrder");
+
+
+
+
 
 //products routes
 router.get("/products/getProducts", getProduct.allProducts);
@@ -32,5 +46,17 @@ router.put("/users/deleteUser/:id", deleteUser.deleteUser);
 //------------------------------------------------------------------------------//
 //Categories routes
 router.post("/Categories/newCategories", postCategorie.addCategorie);
+//------------------------------------------------------------------------------//
+//orderDetails routes
+router.post("/orderDetails/newDetail",postDetails.newDetails);
+router.put("/orderDetails/updateDetail",putDetails.updateDetail);
+router.get("/orderDetails/allDetails",getDetails.getAllDetails);
+router.get("/orderDetails/oneDetail/:id",getDetails.getDetail);
+//------------------------------------------------------------------------------//
+//commandes routes
+router.post("/commandes/newCommande",postOrders.newOrder);
+router.put("/commandes/updateCommande",putOrders.setDetails);
+router.get("/commandes/allDCommande",getOrders.getAllOrders);
+router.get("/commandes/oneDCommande/:id",getOrders.getOrder);
 
 module.exports = router;
