@@ -2,13 +2,12 @@
 const Panier = require('../../models/Panier/panier.model');
 
 
-exports.addNewPanier = async (req,res)=>{
+exports.getPanier = async (req,res)=>{
 
     try {
-        const newPanier = new Panier({
-            produits : req.body.produits,
-            utilisateur : req.body.utilisateur
-        });
+        const newPanier = await Panier.find({
+            _id: req.params.id
+        }).populate("utilisateur produit");
         await newPanier.save();
         res.send(newPanier);
     } catch (error) {

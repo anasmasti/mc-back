@@ -14,9 +14,6 @@ const UserSchema = new Schema({
   type: {
     type: String,
   },
-  date_creation: {
-    type: Date,
-  },
   email: {
     type: String,
   },

@@ -3,7 +3,7 @@ const Commande = require("../../models/Commande/Commande.model");
 
 exports.getAllOrders = async (req, res) => {
   try {
-    const allCommande = Commande.find();
+    const allCommande = Commande.find({deleted: false});
     res.send(allCommande);
   } catch (error) {
     res.send(error.message);

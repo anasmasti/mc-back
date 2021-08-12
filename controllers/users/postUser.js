@@ -1,10 +1,13 @@
 // get modal
 const User = require("../../models/Utilisateur/utilisateur.model");
 const bcrypt = require('bcrypt');
+const registerValidation = require('../../validation/utilisateurValidation');
 
 //post new User
-exports.addUser = async (req, res) => {
+exports.register = async (req, res) => {
   try {
+    const validation = registerValidation.registerValidation(req.body);
+    if(validation.error) return res.send(validation.error.details[0].message);
     const salt = await bcrypt.genSalt(10);
     const hashedPW = await bcrypt.hash(req.body.password , salt);
     const newUser = new User({

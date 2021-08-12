@@ -15,6 +15,8 @@ const deleteUser = require("../controllers/users/deleteUser");
 //------------------------------------------------------------------------------//
 //---------Categorie Controller
 const postCategorie = require("../controllers/categories/postCategorie");
+const deleteCategorie= require("../controllers/categories/deleteCategorie");
+const getCategories= require("../controllers/categories/getCategorie");
 //------------------------------------------------------------------------------//
 //---------orderDetails Controller
 const postDetails = require("../controllers/ordersDetails/postDetails");
@@ -25,8 +27,13 @@ const putDetails = require("../controllers/ordersDetails/putDetails");
 const postOrders = require("../controllers/orders/postOrder");
 const getOrders = require("../controllers/orders/getOrders");
 const putOrders = require("../controllers/orders/putOrder");
-
-
+const deleteOrders = require("../controllers/orders/deleteOrders");
+//------------------------------------------------------------------------------//
+//---------Panier Controller
+const postPanier = require("../controllers/paniers/postPanier");
+const getPanier = require("../controllers/paniers/getPanier");
+const putPanier = require("../controllers/paniers/putPanier");
+const deletePanier = require("../controllers/paniers/deletePanier");
 
 
 
@@ -38,25 +45,40 @@ router.put("/products/updateProduct/:id", putProduct.updateProduct);
 router.put("/products/deleteProduct/:id", deleteProduct.deleteProduct);
 //------------------------------------------------------------------------------//
 //Users routes
-router.post("/users/newUser", postUser.addUser);
+router.post("/users/newUser", postUser.register);
 router.get("/users/getUsers", getUser.allUsers);
 router.get("/users/getUser/:id", getUser.getUser);
+router.get("/users/loggin",getUser.loggin);
 router.put("/users/updateUser/:id", putUser.putUser);
 router.put("/users/deleteUser/:id", deleteUser.deleteUser);
 //------------------------------------------------------------------------------//
 //Categories routes
 router.post("/Categories/newCategories", postCategorie.addCategorie);
+router.put("/Categories/deleteCategorie/:id", deleteCategorie.deleteCategorie);
+router.get("/Categories/getCategories", getCategories.getAllCategories);
 //------------------------------------------------------------------------------//
 //orderDetails routes
 router.post("/orderDetails/newDetail",postDetails.newDetails);
-router.put("/orderDetails/updateDetail",putDetails.updateDetail);
+router.put("/orderDetails/updateDetail/:id",putDetails.updateDetail);
 router.get("/orderDetails/allDetails",getDetails.getAllDetails);
 router.get("/orderDetails/oneDetail/:id",getDetails.getDetail);
 //------------------------------------------------------------------------------//
 //commandes routes
 router.post("/commandes/newCommande",postOrders.newOrder);
-router.put("/commandes/updateCommande",putOrders.setDetails);
+router.put("/commandes/updateCommande/:id",putOrders.setDetails);
 router.get("/commandes/allDCommande",getOrders.getAllOrders);
 router.get("/commandes/oneDCommande/:id",getOrders.getOrder);
+router.put("/commandes/deleteCommande/:id",deleteOrders.deleteOrder);
+//------------------------------------------------------------------------------//
+//panier routes
+router.post("/panier/newPanier",postPanier.addNewPanier);
+router.put("/panier/updatePanier/:id",putPanier.updatePanier);
+router.get("/panier/getPanier",getPanier.getPanier);
+router.put("/panier/deletePanier/:id",deletePanier.deletePanier)
+
+
+
+
+
 
 module.exports = router;

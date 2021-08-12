@@ -2,15 +2,14 @@
 const Panier = require('../../models/Panier/panier.model');
 
 
-exports.updatePanier = async (req,res)=>{
+exports.deletePanier = async (req,res)=>{
     const produits = req.body.produits;
     const utilisateur = req.body.utilisateur;
     try {
         const updatedPanier =await Panier.updateOne(
             {_id: req.params.Id},
             {
-            produits : produits,
-            utilisateur : utilisateur
+            deleted: true
         });
         res.send(updatedPanier);
     } catch (error) {
