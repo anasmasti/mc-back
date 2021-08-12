@@ -1,6 +1,7 @@
 // get modal
 const User = require("../../models/Utilisateur/utilisateur.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 //get all Users
 exports.allUsers = async (req, res) => {
   try {
@@ -29,7 +30,9 @@ exports.loggin = async (req, res) => {
     if (!checkUserEmail) res.send("email introuvable");
     const pw = await bcrypt.compare(req.body.password, checkUserEmail.password);
     if (!pw) res.send("mot de passe incorrect");
-    res.send("logged in");
+    const token = jwt.sign({ _id: checkUserEmail._id },process.env.TOKEN_SECRET);
+    res.header('auth-token',token).send(token);
+    // res.send("logged in");
   } catch (error) {
     res.send(error.message);
   }

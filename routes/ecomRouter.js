@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const verify = require("../verifyToken");
 //---------products Controller
 const getProduct = require("../controllers/products/getProducts");
 const postProduct = require("../controllers/products/postProduct");
@@ -15,8 +15,8 @@ const deleteUser = require("../controllers/users/deleteUser");
 //------------------------------------------------------------------------------//
 //---------Categorie Controller
 const postCategorie = require("../controllers/categories/postCategorie");
-const deleteCategorie= require("../controllers/categories/deleteCategorie");
-const getCategories= require("../controllers/categories/getCategorie");
+const deleteCategorie = require("../controllers/categories/deleteCategorie");
+const getCategories = require("../controllers/categories/getCategorie");
 //------------------------------------------------------------------------------//
 //---------orderDetails Controller
 const postDetails = require("../controllers/ordersDetails/postDetails");
@@ -35,20 +35,18 @@ const getPanier = require("../controllers/paniers/getPanier");
 const putPanier = require("../controllers/paniers/putPanier");
 const deletePanier = require("../controllers/paniers/deletePanier");
 
-
-
 //products routes
 router.get("/products/getProducts", getProduct.allProducts);
 router.get("/products/getProducts/:id", getProduct.getProduct);
-router.post("/products/newProduct", postProduct.addProduct);
-router.put("/products/updateProduct/:id", putProduct.updateProduct);
-router.put("/products/deleteProduct/:id", deleteProduct.deleteProduct);
+router.post("/products/newProduct", verify, postProduct.addProduct);
+router.put("/products/updateProduct/:id", verify, putProduct.updateProduct);
+router.put("/products/deleteProduct/:id", verify, deleteProduct.deleteProduct);
 //------------------------------------------------------------------------------//
 //Users routes
 router.post("/users/newUser", postUser.register);
 router.get("/users/getUsers", getUser.allUsers);
 router.get("/users/getUser/:id", getUser.getUser);
-router.get("/users/loggin",getUser.loggin);
+router.get("/users/loggin", getUser.loggin);
 router.put("/users/updateUser/:id", putUser.putUser);
 router.put("/users/deleteUser/:id", deleteUser.deleteUser);
 //------------------------------------------------------------------------------//
@@ -58,27 +56,22 @@ router.put("/Categories/deleteCategorie/:id", deleteCategorie.deleteCategorie);
 router.get("/Categories/getCategories", getCategories.getAllCategories);
 //------------------------------------------------------------------------------//
 //orderDetails routes
-router.post("/orderDetails/newDetail",postDetails.newDetails);
-router.put("/orderDetails/updateDetail/:id",putDetails.updateDetail);
-router.get("/orderDetails/allDetails",getDetails.getAllDetails);
-router.get("/orderDetails/oneDetail/:id",getDetails.getDetail);
+router.post("/orderDetails/newDetail", verify, postDetails.newDetails);
+router.put("/orderDetails/updateDetail/:id", verify, putDetails.updateDetail);
+router.get("/orderDetails/allDetails", getDetails.getAllDetails);
+router.get("/orderDetails/oneDetail/:id", getDetails.getDetail);
 //------------------------------------------------------------------------------//
 //commandes routes
-router.post("/commandes/newCommande",postOrders.newOrder);
-router.put("/commandes/updateCommande/:id",putOrders.setDetails);
-router.get("/commandes/allDCommande",getOrders.getAllOrders);
-router.get("/commandes/oneDCommande/:id",getOrders.getOrder);
-router.put("/commandes/deleteCommande/:id",deleteOrders.deleteOrder);
+router.post("/commandes/newCommande", verify, postOrders.newOrder);
+router.put("/commandes/updateCommande/:id", verify, putOrders.setDetails);
+router.get("/commandes/allDCommande", verify, getOrders.getAllOrders);
+router.get("/commandes/oneDCommande/:id", getOrders.getOrder);
+router.put("/commandes/deleteCommande/:id",  verify, deleteOrders.deleteOrder);
 //------------------------------------------------------------------------------//
 //panier routes
-router.post("/panier/newPanier",postPanier.addNewPanier);
-router.put("/panier/updatePanier/:id",putPanier.updatePanier);
-router.get("/panier/getPanier",getPanier.getPanier);
-router.put("/panier/deletePanier/:id",deletePanier.deletePanier)
-
-
-
-
-
+router.post("/panier/newPanier", postPanier.addNewPanier);
+router.put("/panier/updatePanier/:id", putPanier.updatePanier);
+router.get("/panier/getPanier", getPanier.getPanier);
+router.put("/panier/deletePanier/:id", deletePanier.deletePanier);
 
 module.exports = router;
