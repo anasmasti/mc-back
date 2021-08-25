@@ -25,6 +25,6 @@ exports.updateProduct = async (req, res) => {
 
     res.send(updatedProduct);
   } catch (err) {
-    res.send(err.message);
+    res.status(401).send({error: err.message});
   }
 };

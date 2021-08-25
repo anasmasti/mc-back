@@ -12,6 +12,6 @@ exports.newOrder = async (req, res) => {
     newCommande.save();
     res.send(newCommande);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

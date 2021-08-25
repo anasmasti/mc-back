@@ -11,6 +11,6 @@ exports.updateContact = async (req, res) => {
     );
     res.send(updatedContact);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

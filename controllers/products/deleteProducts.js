@@ -13,6 +13,6 @@ exports.deleteProduct = async (req, res) => {
 
     res.send(deletedProduct);
   } catch (err) {
-    res.send(err.message);
+    res.status(401).send({error: err.message});
   }
 };

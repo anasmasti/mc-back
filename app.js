@@ -21,7 +21,7 @@ mongoose.connect(
 );
 
 //listen to port
-app.listen(3000,'192.168.11.124')
+app.listen(3000,'192.168.11.119')
 
 //set midllwares
 app.use(bodyParser.json());
@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 
 
 //productRouts
-const users = require('./routes/ecomRouter');
-app.use('/ecom/',users);
+const routes = require('./routes/ecomRouter');
+app.use('/ecom/api/v1',routes);
 
 

@@ -13,6 +13,6 @@ exports.deleteUser = async (req, res) => {
 
     res.send(deletedUser);
   } catch (err) {
-    res.send(err.message);
+    res.status(401).send({error: err.message});
   }
 };

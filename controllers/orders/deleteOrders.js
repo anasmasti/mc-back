@@ -11,6 +11,6 @@ exports.deleteOrder = async (req, res) => {
     );
     res.send(updatedCommande);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

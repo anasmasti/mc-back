@@ -34,11 +34,12 @@ const postPanier = require("../controllers/paniers/postPanier");
 const getPanier = require("../controllers/paniers/getPanier");
 const putPanier = require("../controllers/paniers/putPanier");
 const deletePanier = require("../controllers/paniers/deletePanier");
-
+// file upload
+const upload = require("../middleware/upload");
 //products routes
 router.get("/products/getProducts", getProduct.allProducts);
 router.get("/products/getProducts/:id", getProduct.getProduct);
-router.post("/products/newProduct", verify, postProduct.addProduct);
+router.post("/products/newProduct", upload.single('images') , postProduct.addProduct);
 router.put("/products/updateProduct/:id", verify, putProduct.updateProduct);
 router.put("/products/deleteProduct/:id", verify, deleteProduct.deleteProduct);
 //------------------------------------------------------------------------------//
@@ -46,9 +47,11 @@ router.put("/products/deleteProduct/:id", verify, deleteProduct.deleteProduct);
 router.post("/users/newUser", postUser.register);
 router.get("/users/getUsers", getUser.allUsers);
 router.get("/users/getUser/:id", getUser.getUser);
-router.get("/users/loggin", getUser.loggin);
+router.post("/users/loggin", postUser.loggin);
 router.put("/users/updateUser/:id", putUser.putUser);
 router.put("/users/deleteUser/:id", deleteUser.deleteUser);
+router.post("/users/sendMail", postUser.forgotPassword);
+router.post("/users/newPassword/:id", postUser.newPassword);
 //------------------------------------------------------------------------------//
 //Categories routes
 router.post("/Categories/newCategories", postCategorie.addCategorie);
@@ -66,12 +69,12 @@ router.post("/commandes/newCommande", verify, postOrders.newOrder);
 router.put("/commandes/updateCommande/:id", verify, putOrders.setDetails);
 router.get("/commandes/allDCommande", verify, getOrders.getAllOrders);
 router.get("/commandes/oneDCommande/:id", getOrders.getOrder);
-router.put("/commandes/deleteCommande/:id",  verify, deleteOrders.deleteOrder);
+router.put("/commandes/deleteCommande/:id", verify, deleteOrders.deleteOrder);
 //------------------------------------------------------------------------------//
 //panier routes
 router.post("/panier/newPanier", postPanier.addNewPanier);
 router.put("/panier/updatePanier/:id", putPanier.updatePanier);
-router.get("/panier/getPanier", getPanier.getPanier);
+router.get("/panier/getPanier/:id", getPanier.getPanier);
 router.put("/panier/deletePanier/:id", deletePanier.deletePanier);
 
 module.exports = router;

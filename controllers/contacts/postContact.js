@@ -10,6 +10,6 @@ exports.newContact = async (req, res) => {
     await newContact.save();
     res.send(newContact);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

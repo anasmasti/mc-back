@@ -11,7 +11,7 @@ exports.newComment = async (req, res) => {
     await newComment.save();
     res.send(newComment);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };
 

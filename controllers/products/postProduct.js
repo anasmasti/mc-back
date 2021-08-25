@@ -1,6 +1,5 @@
 // get modal
 const Product = require("../../models/Produits/produits.model");
-
 //post new product
 exports.addProduct = async (req, res) => {
   try {
@@ -19,9 +18,13 @@ exports.addProduct = async (req, res) => {
       taille: req.body.taille,
       categorie: req.body.categorie,
     });
+ 
+    if (req.file) {
+      newProduct.images.push(req.file.path);
+    }
     const addedProduct = await newProduct.save();
     res.send(addedProduct);
   } catch (err) {
-    res.send(err.message);
+    res.status(401).send({ error: err.message });
   }
 };

@@ -6,7 +6,7 @@ exports.getAllOrders = async (req, res) => {
     const allCommande = await Commande.find({ deleted: false });
     res.send(allCommande);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };
 
@@ -17,6 +17,6 @@ exports.getOrder = async (req, res) => {
     );
     res.send(oneOrder);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

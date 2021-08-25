@@ -12,6 +12,6 @@ exports.addNewPanier = async (req,res)=>{
         await newPanier.save();
         res.send(newPanier);
     } catch (error) {
-        res.send(error.message);
+        res.status(401).send({error: err.message});
     }
 }

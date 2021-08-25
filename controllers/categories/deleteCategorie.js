@@ -12,6 +12,6 @@ exports.deleteCategorie = async (req,res) => {
           );
           res.send(deletedCategorie);
     } catch (error) {
-        res.send(error.message);
+      res.status(401).send({error: err.message});
     }
 }

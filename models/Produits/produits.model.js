@@ -44,10 +44,10 @@ const ProduitSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Categorie'
   },
-  image: {
-    type:[imageSchema],
+  images: [{
+    type:String,
     required: false
-  },
+  }],
   deleted:{
     type: Boolean,
     default:false

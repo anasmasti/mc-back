@@ -9,6 +9,6 @@ exports.allComments = async (req, res) => {
     });
     res.send(allComment);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

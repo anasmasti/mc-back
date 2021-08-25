@@ -10,6 +10,6 @@ exports.newDetails = async (req, res) => {
     await newDetails.save();
     res.send(newDetails);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

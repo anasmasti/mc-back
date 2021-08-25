@@ -11,6 +11,6 @@ exports.deleteDetail = async (req, res) => {
     );
     res.send(updatedDetails);
   } catch (error) {
-    res.send(error.message);
+    res.status(401).send({error: err.message});
   }
 };

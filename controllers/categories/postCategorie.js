@@ -10,6 +10,6 @@ exports.addCategorie = async (req,res) => {
         const addedCategorie = await newCategorie.save();
         res.send(addedCategorie);
       } catch (err) {
-        res.send(err.message);
+        res.status(401).send({error: err.message});
       }
 }

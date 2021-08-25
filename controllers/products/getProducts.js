@@ -7,7 +7,7 @@ exports.allProducts = async (req, res) => {
     const allProducts = await Product.find({ deleted: false });
     res.send(allProducts);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(401).send({error: err.message});
   }
 };
 
@@ -19,6 +19,6 @@ exports.getProduct = async (req, res) => {
     });
     res.send(getProduct);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(401).send({error: err.message});
   }
 };

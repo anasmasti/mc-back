@@ -30,6 +30,6 @@ exports.putUser = async (req, res) => {
    
     res.send(updatedUser);
   } catch (err) {
-    res.send(err.message);
+    res.status(401).send({error: err.message});
   }
 };

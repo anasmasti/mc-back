@@ -14,6 +14,6 @@ exports.updatePanier = async (req,res)=>{
         });
         res.send(updatedPanier);
     } catch (error) {
-        res.send(error.message);
+        res.status(401).send({error: err.message});
     }
 }

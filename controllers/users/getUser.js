@@ -21,19 +21,4 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.loggin = async (req, res) => {
-  try {
-    const checkUserEmail = await User.findOne({
-      deleted: false,
-      email: req.body.email,
-    });
-    if (!checkUserEmail) res.send("email introuvable");
-    const pw = await bcrypt.compare(req.body.password, checkUserEmail.password);
-    if (!pw) res.send("mot de passe incorrect");
-    const token = jwt.sign({ _id: checkUserEmail._id },process.env.TOKEN_SECRET);
-    res.header('auth-token',token).send(token);
-    // res.send("logged in");
-  } catch (error) {
-    res.send(error.message);
-  }
-};
+
