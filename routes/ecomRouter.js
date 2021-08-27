@@ -39,7 +39,7 @@ const upload = require("../middleware/upload");
 //products routes
 router.get("/products/getProducts", getProduct.allProducts);
 router.get("/products/getProducts/:id", getProduct.getProduct);
-router.post("/products/newProduct", upload.single('images') , postProduct.addProduct);
+router.post("/products/newProduct", upload.array('images[]') , postProduct.addProduct);
 router.put("/products/updateProduct/:id", verify, putProduct.updateProduct);
 router.put("/products/deleteProduct/:id", verify, deleteProduct.deleteProduct);
 //------------------------------------------------------------------------------//

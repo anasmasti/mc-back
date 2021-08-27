@@ -20,8 +20,12 @@ mongoose.connect(
   }
 );
 
+
+// midlleware to access assets folder directly exemple:  http://192.168.11.122:3000/assets/1629966369521.jpg
+app.use('/assets',express.static('assets'));
+
 //listen to port
-app.listen(3000,'192.168.11.119')
+app.listen(3000,'192.168.11.122')
 
 //set midllwares
 app.use(bodyParser.json());

@@ -19,8 +19,11 @@ exports.addProduct = async (req, res) => {
       categorie: req.body.categorie,
     });
  
-    if (req.file) {
-      newProduct.images.push(req.file.path);
+    if (req.files) {
+      req.files.forEach(file => {
+        newProduct.images.push(file.path);
+      });
+      
     }
     const addedProduct = await newProduct.save();
     res.send(addedProduct);
